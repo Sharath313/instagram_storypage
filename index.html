@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <meta charset="utf-8">
+    <title>1-Posts</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Roboto:100,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="CSS/app.css">
+    <link rel="stylesheet" href="CSS/common.css">
+    <link rel="stylesheet" href="CSS/header.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <script type="text/javascript" src="posts.json"></script>
+<head>
+
+    <body>
+        <header>
+            <nav id="navbar">
+                <div class="container">
+                    <div class="logo-area">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/1200px-Instagram_logo_2016.svg.png" />
+                    </div>
+                    <ul class="right-nav-icons">
+                        <li>
+                            <img src="https://apps.e-box.co.in/deploy/1615263000279_285535/images/menuicons/icon-1.png" />
+                        </li>
+                        <li>
+                            <img src="https://apps.e-box.co.in/deploy/1615263000279_285535/images/menuicons/icon-2.png" />
+                        </li>
+                        <li>
+                            <img src="https://apps.e-box.co.in/deploy/1615263000279_285535/images/menuicons/icon-3.png" />
+                        </li>
+                    </ul>
+                    <div class="clr"></div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="container">
+                <div class="story">
+                    <div class="story-block">
+                        <div class="story-outer-holder" id="story-preview" onclick="storyPreview()">
+                            <div class="story-preview-img">
+                                <img src="images/image4.jpg" alt="img" />
+                                <div class="story-text">
+                                    #OneplusShot
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="posts-wrapper" id="post-data">
+                    
+                </div>
+                
+                <div class ="modal" id="myModal">
+                    
+                </div>
+            </main>
+            <script>
+                var myPost = [ { "image": "images/image1.jpg", "likedCount": "10", "caption": "Awesome Day", "youLiked": false, "postedBy":"PriyaBavani", "comment":["cute pic", "Nice!!!","OMG!!!!!!!!!!!!!!!!!!!!"] }, { "image": "images/image2.jpg", "likedCount": "100", "caption": "HappyTimes", "youLiked": true, "postedBy":"PriyaBavani", "comment":["Where is this place??"] }, { "image": "images/image3.jpg", "likedCount": "87", "caption": ":-)", "youLiked": false, "postedBy":"PriyaBavani", "comment": ["nice click"] } ]
+                var postData = "";
+                function buildPost(myObj) {
+                   //Fill your code
+                    var likedIcon, likedCounts;
+                       
+                       if(myObj.youLiked){
+                            likedIcon = `<img src="" >`;
+                            likedCounts = `Liked by You and ${myObj.likedCount} others`;
+                       }
+                       else{
+                            likedIcon = `<div class="heart-icon"></div>`;
+                            likedCounts = `${myObj.likedCount} likes`;
+                       }
+                        postData += `
+                        <div class="post-item">
+                           <div class="posted-by">
+                               ${myObj.postedBy}
+                           </div>
+                           <img src=${myObj.image} />
+                           <div class="action-block">
+                                <img src="https://apps.e-box.co.in/deploy/1615263000279_285535/images/menuicons/icon-2.png" height=30px width=20px>
+                                
+                                <img src="https://static.thenounproject.com/png/638755-200.png" height=50px width=20px>
+                           </div>
+                           <div class="liked-by">
+                               <span>${likedCounts}</span>
+                           </div>
+                           <div class="caption">
+                               <b>${myObj.postedBy}</b> ${myObj.caption}
+                           </div>
+                        </div>
+                        `;   
+                    document.getElementById('post-data').innerHTML = postData;
+                }
+                for(var i = 0; i < myPost.length; i++) {
+                    buildPost(myPost[i]);    
+                }
+    
+                function storyPreview() {
+                    //Fill your code
+                    var dataModal = `
+                    <div class="modal-content">
+                        <div class="postedByHighlight">
+                            <div class="preview-holder">
+                                <div class="preview-img">
+                                    <img src="images/image4.jpg" alt="img" />
+                                </div>
+                            </div>
+                        </div>
+                        <div id="myProgress">
+                            <div id="myBar"></div>
+                        </div>
+                        <span class="close">x</span>
+                        <div class="story-highlight">
+                            <img src="images/image4.jpg" alt="img" />
+                        </div>
+                    </div>
+                    `;
+                    document.getElementById("myModal").innerHTML = dataModal;
+                    document.getElementById("myModal").style.display = "block";
+                    setTimeout(function(){
+                        document.getElementById("myModal").style.display = "none";    
+                        document.getElementById("myModal").innerHTML = "";
+                    }, 5000);
+                } 
+            </script>
+        </body>
+    </html>
+  
+
+
+
